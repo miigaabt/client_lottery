@@ -6,7 +6,7 @@ const Page404 = () => {
     <>
       <h1>404</h1>
       <h2>Таны хайж байгаа хуудас байхгүй байна.</h2>
-      <Link to="/home" class="btn btn-outline-indigo">
+      <Link to="/home" className="btn btn-outline-indigo">
         Нүүр хуудас руу очих
       </Link>
     </>
