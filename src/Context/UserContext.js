@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { Navigate, useNavigate } from "react-router-dom";
+import Alert from "../Components/Alert";
 const UserContext = React.createContext();
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
 };
 
 export const UserStore = (props) => {
+  const navigate = useNavigate();
   const [state, setState] = useState(initialState);
 
   const loginUserSucces = (success, token, cardId, data) => {
@@ -30,6 +32,7 @@ export const UserStore = (props) => {
       cardId,
       data,
     });
+    navigate("home");
   };
 
   const logout = () => {
@@ -60,7 +63,7 @@ export const UserStore = (props) => {
         //autoLogout(result.data.expires * 1000);
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log(err.response.data.error.message);
         setState({
           ...state,
           logginIn: false,
@@ -71,6 +74,7 @@ export const UserStore = (props) => {
           cardId: null,
           data: null,
         });
+        Alert(err.response.data.error.message, "401");
       });
   };
 

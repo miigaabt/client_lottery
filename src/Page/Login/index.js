@@ -13,14 +13,15 @@ import {
 import UserContext from "../../Context/UserContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Alert from "../../Components/Alert";
+
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 // import Alert from '../../Components/General/Alert';
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = (props) => {
   const ctx = useContext(UserContext);
-  //   const warning = "Нэвтрэх нэр эвсэл нууц үг буруу байна.";
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     phone: "",
     pinCode: "",
@@ -48,7 +49,9 @@ const Login = (props) => {
 
   return (
     <Container>
+      <ToastContainer />
       <Form>
+        {ctx.state.cardId && <navigate to="/home" />}
         <Form.Group className="mb-3">
           <Form.Label>Утасны дугаар</Form.Label>
           <Form.Control

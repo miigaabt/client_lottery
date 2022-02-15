@@ -15,23 +15,21 @@ const HomePage = (props) => {
   useEffect(() => {
     const link = `users/${cardId}`;
     API.getData(link)
-      .then((response) => {
+      .then(async (response) => {
+        var result = await response;
         setApiData((prevState) => ({
           ...prevState,
-          data: response,
+          data: result.data.Amount,
         }));
-        console.log(response);
+        console.log(result.data.Amount);
+        console.log(apiData.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  return (
-    <Container>
-      <span>{ctx.state.cardId}</span>
-    </Container>
-  );
+  return <Container>Таны сугаалааны тоо : {apiData.data}</Container>;
 };
 
 export default HomePage;

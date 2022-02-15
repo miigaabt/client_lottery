@@ -10,6 +10,7 @@ import Logout from "../../Components/Logout";
 
 function App() {
   const userCtx = useContext(UserContext);
+
   useEffect(() => {
     const success = localStorage.getItem("success");
     const token = localStorage.getItem("token");
